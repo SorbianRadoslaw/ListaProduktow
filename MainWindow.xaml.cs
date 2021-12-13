@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ListaProduktow
 {
@@ -35,6 +36,12 @@ namespace ListaProduktow
             ListaProduktow.Add(new Produkt("DZ-10", "długopis żelowy", 1121, "Katowice 1"));
             ListaProduktow.Add(new Produkt("DZ-12", "długopis kulkowy", 280, "Katowice 2"));
             lstProdukty.ItemsSource = ListaProduktow;
+
+            //sortowanie po kolumnie oraz układa rosnący luyb malejący
+            CollectionView widok = (CollectionView)CollectionViewSource.GetDefaultView(lstProdukty.ItemsSource);
+            widok.SortDescriptions.Add(new SortDescription("Magazyn", ListSortDirection.Ascending));//Descending-malejąco
+            widok.SortDescriptions.Add(new SortDescription("Nazwa", ListSortDirection.Ascending));
+
         }
     }
 }
